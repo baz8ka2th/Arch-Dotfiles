@@ -1,0 +1,120 @@
+# 09 / 02 / 2021 #
+#####################################################
+#      ___          ___                     ___     #
+#     /\__\        /\  \         ___       /\__\    #
+#    /::|  |      /::\  \       /\  \     /::|  |   #
+#   /:|:|  |     /:/\:\  \      \:\  \   /:|:|  |   #
+#  /:/|:|__|__  /::\~\:\  \     /::\__\ /:/|:|  |__ #
+# /:/ |::::\__\/:/\:\ \:\__\ __/:/\/__//:/ |:| /\__\#
+# \/__/~~/:/  /\/__\:\/:/  //\/:/  /   \/__|:|/:/  /#
+#       /:/  /      \::/  / \::/__/        |:/:/  / #
+#      /:/  /       /:/  /   \:\__\        |::/  /  #
+#     /:/  /       /:/  /     \/__/        /:/  /   #
+#     \/__/        \/__/                   \/__/    #
+#####################################################
+# shorter polite request for superuser authority
+alias plz='sudo' 
+#################################################################
+# Basic terminal commands, stock and added from others' configs #
+#################################################################
+alias ls='ls -hN --color=auto --group-directories-first'  	#
+alias la='ls -AhN --color=auto --group-directories-first'	#
+alias ll='ls -la --color=auto --group-directories-first'	#
+alias ..='cd ..'				# simply use .. to cd up a folder
+#alias cp="cp -i" 				# confirm copy
+#alias mv='mv -i'				# confirm move
+#alias rm='rm -i'				# confirm remove
+alias df='df -h'        		# human readable disk free
+alias free='free -m'    		# shows ram usage
+alias grep='grep --color=auto'  # colour coded search
+###############################
+# Convenient Terminal Aliases #
+###############################
+alias close='killall -9'        # Kills the application named after command
+alias cl='clear; pfetch'        # Displays basic system info after clearing
+alias cln='clear; neofetch'     # Displays basic system info after clearing
+alias matrix='cmatrix -as'		# Matrix screensaver
+alias kernel='uname -a'			# Kernel Version
+alias findip='ip route show'	# Current ip address
+
+# Requires Timeshift installed with a backup already set up
+alias restore='sudo timeshift --restore'	# quickly run a timeshift restore from terminal
+alias backup='sudo timeshift --create'     	# create a new timeshift resore point
+
+## BTRFS Maintenenece ##
+alias scrub='sudo btrfs scrub start / && echo "Root Disk Scrubbed Successfully"'
+alias balance='sudo btrfs balance start -musage=50 -dusage=50 / && echo "Sectors Balanced Successfully"'
+
+# ClamAV scan home
+alias virus-scan='echo "Home Folder Virus Scan"; sudo freshclam && clamscan -vr /home && echo "Home Folder Virus Scan Complete"'
+# ClamAV scan root
+alias long-virus-scan='echo "Virus Scanning Root Directory /n *This will take a long time"; sudo freshclam && clamscan -vr / && echo "Root Virus Scan Complete"'
+
+# systemctl
+alias sys-enable='sudo systemctl enable'
+alias sys-start='sudo systemctl start'
+alias sys-restart='sudo systemctl restart'
+alias sys-status='sudo systemctl status'
+
+####################################
+#    ___      ___      ___   ___   #
+#   /\__\    /\  \    /\__\ /\  \  #
+#  /:/__/_  /::\  \  /:/  //::\  \ #
+# /::\/\__\/::\:\__\/:/__//::\:\__\#
+# \/\::/  /\:\:\/  /\:\  \\/\::/  /#
+#   /:/  /  \:\/  /  \:\__\  \/__/ #
+#   \/__/    \/__/    \/__/        #
+####################################
+alias mnhelp=' echo "
+mnhelp
+			=====================
+			Main terminal aliases
+			=====================
+			[usage <substitution>]
+
+	plz			sudo [uses admin/superuser/root privileges] 
+				{requests password confirmation}
+				[plz <command>]
+				[plz !!] runs previous failed command with sudo
+					>> use if *permission denied* etc.
+
+	close			Fully Closes a non-responsive application by name 
+					[close <application-name>]
+	cl  			Displays basic system info after clearing
+					[cl] [cln]-neofetch
+	matrix 			Matrix screensaver within terminal
+					[matrix] >> press any key to stop
+	findip 			Current ip address
+					[findip]
+
+	restore 		gives you a list of restore points to revert to
+					if something has gone catastrophically wrong 
+					use restore to pick a backup to go back to 
+					[restore]
+	backup			creates a new on-demand restore point 
+					[backup]
+
+	scrub			scrubs unused space on BTRFS, improves performance
+	balance			balances sectors with less than 50% space filled
+
+	virus-scan 		Scans Home Directory for Viruses
+	long-virus-scan		Scans Root Directory for Viruses
+	
+	sys-enable 		sudo systemctl enable <service>
+	sys-start 		sudo systemctl start <service>
+	sys-start 		sudo systemctl restart <service>
+ 	sys-status 		sudo systemctl status
+
+			Usually unnecessary
+			===================
+	ls			list files in current folder
+	la			list all files (includes hidden)
+	ll			long list of current folder
+	..			up a folder
+	cp			copy file (cp <filename> <location>)
+	mv			move file (mv <filename> <location>)
+	rm			confirm remove
+	df			human readable free disk space
+	free 			shows ram usage
+	grep 			search (<command with list output> | grep <keyword>)
+"'

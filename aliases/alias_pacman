@@ -1,0 +1,100 @@
+# 09 / 02 / 2021 #
+################################################################################
+#     ___          ___          ___          ___          ___          ___     #
+#    /\  \        /\  \        /\  \        /\__\        /\  \        /\__\    #
+#   /::\  \      /::\  \      /::\  \      /::|  |      /::\  \      /::|  |   #
+#  /:/\:\  \    /:/\:\  \    /:/\:\  \    /:|:|  |     /:/\:\  \    /:|:|  |   #
+# /::\~\:\  \  /::\~\:\  \  /:/  \:\  \  /:/|:|__|__  /::\~\:\  \  /:/|:|  |__ #
+#/:/\:\ \:\__\/:/\:\ \:\__\/:/__/ \:\__\/:/ |::::\__\/:/\:\ \:\__\/:/ |:| /\__\#
+#\/__\:\/:/  /\/__\:\/:/  /\:\  \  \/__/\/__/~~/:/  /\/__\:\/:/  /\/__|:|/:/  /#
+#     \::/  /      \::/  /  \:\  \            /:/  /      \::/  /     |:/:/  / #
+#      \/__/       /:/  /    \:\  \          /:/  /       /:/  /      |::/  /  #
+#                 /:/  /      \:\__\        /:/  /       /:/  /       /:/  /   #
+#                 \/__/        \/__/        \/__/        \/__/        \/__/    #
+################################################################################
+# Update Mirrorlist
+alias fast-arch='sudo reflector --verbose --latest 100 --sort rate --save /etc/pacman.d/mirrorlist && echo "Mirrors Updated"'
+# simply use aur in place of paru
+alias aur='paru' 
+# update official apps
+alias pacup='sudo pacman -Syyuu'
+# update AUR apps
+alias aurup='paru -Sua --noconfirm'
+# Basic Update of all applications
+alias update='pacup && aurup'
+# Full System Update + Scrub SubVolumes + Balance Subvolumes
+alias full-update='fast-arch && update && scrub && balance' 
+
+# Search Official Repositories
+alias pacs='pacman -Ss'
+# Install application by name 
+alias install='paru -Sy --noconfirm'
+alias pacin='sudo pacman -Sy'
+# Remove any installed package + unshared dependencies  
+alias destroy='sudo pacman -Rns' 
+# Lists all installed packages  
+alias pacapps='pacman -Qe'  
+alias aurapps='pacman -Qm'
+
+# Remove unused dependencies 
+# (only needed once, 'destroy' makes it unnecessary)
+alias orphan-crippler='plz pacman -Rns $(pacman -Qdtq)'
+
+####################################
+#    ___      ___      ___   ___   #
+#   /\__\    /\  \    /\__\ /\  \  #
+#  /:/__/_  /::\  \  /:/  //::\  \ #
+# /::\/\__\/::\:\__\/:/__//::\:\__\#
+# \/\::/  /\:\:\/  /\:\  \\/\::/  /#
+#   /:/  /  \:\/  /  \:\__\  \/__/ #
+#   \/__/    \/__/    \/__/        #
+####################################
+alias pachelp='echo "
+pachelp
+			=======================
+			Pacman terminal aliases
+			=======================
+			[usage <substitution>]
+	
+	pacs			search for app on official repositories
+					(use install command afterwards)
+					[pacs <app-name>]
+
+	aur/paru		install from Arch User Repository 
+					This lists options, use corresponding 
+					number to pick which to install 
+					Lowest # is closest match to app-name 
+					(no spaces allowed)
+					[aur <app-name>]
+
+	install			installs named app & dependencies from pacman or AUR
+					[install <app-name>]
+	pacin			installs named app & dependencies from official repositories only
+					[install <app-name>]
+	destroy			installs named app completely with unshared dependencies and metadata
+					[destroy <app-name>]
+			
+	pacup			basic core system update
+					[pacup]
+	aurup			AUR apps update
+					[aurup] (preferably not before pacup)
+	update			basic system update (updates pacman then aur sequentially)
+					[update]
+	full-update		update mirrorlist + system update + disk cleanup + antivirus scan
+					[full-update] 
+ 	
+	pacapps			shows all installed apps from official pacman repositories only
+					[pacapps] >> all apps shown
+					[pacapps <app-name>] >> filters only specific app-name
+	aurapps			shows only installed apps from AUR
+					[aurapps] >> all apps from AUR
+					[aurapps <app-name>] >> filters only app-name
+
+	fast-arch		changes download location to the fastest
+					[fast-arch]
+	
+	clear-cache		clears all cached packages older than 3rd most recent  
+					[clear-cache] >> perform monthly
+	orphan-crippler		removes unnecessary dependencies (warning, deletes AUR compiler packages)
+					[orphan-crippler]
+"'
