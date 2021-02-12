@@ -1,4 +1,4 @@
-# 09 / 02 / 2021 #
+# 12 / 02 / 2021 #
 #####################################################
 #      ___          ___                     ___     #
 #     /\__\        /\  \         ___       /\__\    #
@@ -13,7 +13,8 @@
 #     \/__/        \/__/                   \/__/    #
 #####################################################
 # shorter polite request for superuser authority
-alias plz='sudo' 
+alias plz='doas' 
+#alias sudo='doas'
 #################################################################
 # Basic terminal commands, stock and added from others' configs #
 #################################################################
@@ -38,23 +39,23 @@ alias kernel='uname -a'			# Kernel Version
 alias findip='ip route show'	# Current ip address
 
 # Requires Timeshift installed with a backup already set up
-alias restore='sudo timeshift --restore'	# quickly run a timeshift restore from terminal
-alias backup='sudo timeshift --create'     	# create a new timeshift resore point
+alias restore='doas timeshift --restore'	# quickly run a timeshift restore from terminal
+alias backup='doas timeshift --create'     	# create a new timeshift resore point
 
 ## BTRFS Maintenenece ##
-alias scrub='sudo btrfs scrub start / && echo "Root Disk Scrubbed Successfully"'
-alias balance='sudo btrfs balance start -musage=50 -dusage=50 / && echo "Sectors Balanced Successfully"'
+alias scrub='doas btrfs scrub start / && echo "Root Disk Scrubbed Successfully"'
+alias balance='doas btrfs balance start -musage=50 -dusage=50 / && echo "Sectors Balanced Successfully"'
 
 # ClamAV scan home
-alias virus-scan='echo "Home Folder Virus Scan"; sudo freshclam && clamscan -vr /home && echo "Home Folder Virus Scan Complete"'
+alias virus-scan='echo "Home Folder Virus Scan"; doas freshclam && clamscan -vr /home && echo "Home Folder Virus Scan Complete"'
 # ClamAV scan root
-alias long-virus-scan='echo "Virus Scanning Root Directory /n *This will take a long time"; sudo freshclam && clamscan -vr / && echo "Root Virus Scan Complete"'
+alias long-virus-scan='echo "Virus Scanning Root Directory /n *This will take a long time"; doas freshclam && clamscan -vr / && echo "Root Virus Scan Complete"'
 
 # systemctl
-alias sys-enable='sudo systemctl enable'
-alias sys-start='sudo systemctl start'
-alias sys-restart='sudo systemctl restart'
-alias sys-status='sudo systemctl status'
+alias sys-enable='doas systemctl enable'
+alias sys-start='doas systemctl start'
+alias sys-restart='doas systemctl restart'
+alias sys-status='doas systemctl status'
 
 ####################################
 #    ___      ___      ___   ___   #
@@ -72,10 +73,10 @@ mnhelp
 			=====================
 			[usage <substitution>]
 
-	plz			sudo [uses admin/superuser/root privileges] 
+	plz			doas [uses admin/superuser/root privileges] 
 				{requests password confirmation}
 				[plz <command>]
-				[plz !!] runs previous failed command with sudo
+				[plz !!] runs previous failed command with doas
 					>> use if *permission denied* etc.
 
 	close			Fully Closes a non-responsive application by name 
@@ -100,10 +101,10 @@ mnhelp
 	virus-scan 		Scans Home Directory for Viruses
 	long-virus-scan		Scans Root Directory for Viruses
 	
-	sys-enable 		sudo systemctl enable <service>
-	sys-start 		sudo systemctl start <service>
-	sys-start 		sudo systemctl restart <service>
- 	sys-status 		sudo systemctl status
+	sys-enable 		doas systemctl enable <service>
+	sys-start 		doas systemctl start <service>
+	sys-start 		doas systemctl restart <service>
+ 	sys-status 		doas systemctl status
 
 			Usually unnecessary
 			===================

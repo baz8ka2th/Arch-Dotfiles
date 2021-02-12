@@ -1,4 +1,4 @@
-# 09 / 02 / 2021 #
+# 12 / 02 / 2021 #
 ################################################################################
 #     ___          ___          ___          ___          ___          ___     #
 #    /\  \        /\  \        /\  \        /\__\        /\  \        /\__\    #
@@ -13,11 +13,12 @@
 #                 \/__/        \/__/        \/__/        \/__/        \/__/    #
 ################################################################################
 # Update Mirrorlist
-alias fast-arch='sudo reflector --verbose --latest 100 --sort rate --save /etc/pacman.d/mirrorlist && echo "Mirrors Updated"'
+alias fast-arch='doas reflector --verbose --latest 100 --sort rate --save /etc/pacman.d/mirrorlist && echo "Mirrors Updated"'
 # simply use aur in place of paru
 alias aur='paru' 
+alias yay='paru'
 # update official apps
-alias pacup='sudo pacman -Syyuu'
+alias pacup='doas pacman -Syyuu'
 # update AUR apps
 alias aurup='paru -Sua --noconfirm'
 # Basic Update of all applications
@@ -29,9 +30,9 @@ alias full-update='fast-arch && update && scrub && balance'
 alias pacs='pacman -Ss'
 # Install application by name 
 alias install='paru -Sy --noconfirm'
-alias pacin='sudo pacman -Sy'
+alias pacin='doas pacman -Sy'
 # Remove any installed package + unshared dependencies  
-alias destroy='sudo pacman -Rns' 
+alias destroy='doas pacman -Rns' 
 # Lists all installed packages  
 alias pacapps='pacman -Qe'  
 alias aurapps='pacman -Qm'
